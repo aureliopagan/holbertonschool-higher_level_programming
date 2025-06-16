@@ -8,7 +8,8 @@ def fetch_and_print_posts():
     """
     url = 'https://jsonplaceholder.typicode.com/posts'
     response = requests.get(url)
-    print(f"Response status: {response.status_code}")
+    # Print exactly as the test expects
+    print(f"Status Code: {response.status_code}")
     if response.status_code == 200:
         all_posts = response.json()
         for post_item in all_posts:
