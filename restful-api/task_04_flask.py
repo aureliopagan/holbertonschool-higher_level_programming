@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 
 app = Flask(__name__)
 
-# Data store for users, keyed by username
+# In-memory user database, stored as a dictionary
 users = {}
 
 @app.route('/', methods=['GET'])
@@ -12,7 +12,7 @@ def home():
 @app.route('/data', methods=['GET'])
 def get_usernames():
     """
-    Return a list of all usernames in the system.
+    Returns a list of all current usernames.
     """
     return jsonify(list(users.keys())), 200
 
@@ -24,7 +24,6 @@ def status():
 def get_user(username):
     """
     Retrieve user info by username.
-    If user doesn't exist, return error message.
     """
     user_info = users.get(username)
     if not user_info:
@@ -34,35 +33,34 @@ def get_user(username):
 @app.route('/add_user', methods=['POST'])
 def add_user():
     """
-    Add a new user based on JSON payload.
-    Must include 'username'.
+    Add a new user.
     """
     if not request.is_json:
         return jsonify({'error': 'JSON body required'}), 400
 
-    data_received = request.get_json()
+    data = request.get_json()
 
     # Extract username
-    username_value = data_received.get('username')
+    username_value = data.get('username')
     if not username_value:
         return jsonify({'error': 'Username is required'}), 400
 
-    # Prevent duplicate usernames
+    # Check for duplicate username
     if username_value in users:
         return jsonify({'error': 'User already exists'}), 400
 
     # Build user object
     user_obj = {
         'username': username_value,
-        'name': data_received.get('name'),
-        'age': data_received.get('age'),
-        'city': data_received.get('city')
+        'name': data.get('name'),
+        'age': data.get('age'),
+        'city': data.get('city')
     }
 
-    # Store the user
+    # Save user
     users[username_value] = user_obj
 
-    # Return success message with user data
+    # Return success message
     return jsonify({
         'message': 'User added',
         'user': user_obj
