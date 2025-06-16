@@ -1,7 +1,7 @@
 import requests
 import csv
 
-def display_post_titles():
+def fetch_and_print_posts():
     """
     Retrieve all posts from JSONPlaceholder and display the response status
     along with the titles of each post.
@@ -18,7 +18,7 @@ def display_post_titles():
     else:
         print(f"Error fetching data: status code {response.status_code}")
 
-def save_posts_to_csv():
+def fetch_and_save_posts():
     """
     Fetch all posts and store selected details (id, title, body) into
     a CSV file named 'posts.csv'.
