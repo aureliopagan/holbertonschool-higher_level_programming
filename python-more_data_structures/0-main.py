@@ -1,13 +1,12 @@
-# 0-main.py
-
 #!/usr/bin/python3
-from 0-square_matrix_simple import square_matrix
+square_matrix_simple = __import__('0-square_matrix_simple').square_matrix_simple
 
-def main():
-    matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-    result = square_matrix(matrix)
-    print("Square matrix result:")
-    print(result)
+matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
 
-if __name__ == "__main__":
-    main()
+new_matrix = square_matrix_simple(matrix)
+print(new_matrix)
+print(matrix)
