@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Defines a student class with JSON conversion capability."""
 
+
 class Student:
     """Represents a student with basic info and JSON conversion."""
 
