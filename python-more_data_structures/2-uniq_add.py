@@ -1,4 +1,3 @@
-def uniq_add(my_list):
-    """Add all unique integers in a list."""
-    unique_numbers = set(my_list)
-    return sum(unique_numbers)
+#!/usr/bin/python3
+def uniq_add(my_list=[]):
+    return sum(set(my_list))

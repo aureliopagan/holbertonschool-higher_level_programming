@@ -1,9 +1,6 @@
-def uniq_add(my_list):
-    """Adds all unique integers in a list."""
-    return sum(set(my_list))
+#!/usr/bin/python3
+uniq_add = __import__('2-uniq_add').uniq_add
 
-if __name__ == "__main__":
-    # Example test case
-    print(uniq_add([1, 2, 3, 2, 1]))  # Output: 6
-    print(uniq_add([1, 1, 1, 1]))     # Output: 1
-    print(uniq_add([]))                # Output: 0
+my_list = [1, 2, 3, 1, 4, 2, 5]
+result = uniq_add(my_list)
+print("Result: {:d}".format(result))
