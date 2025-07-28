@@ -1,8 +1,28 @@
 #!/usr/bin/env python3
-from task_01_duck_typing import Circle, Rectangle, shape_info
+"""Task 00: ABC"""
 
-circle = Circle(radius=5)
-rectangle = Rectangle(width=4, height=7)
 
-shape_info(circle)
-shape_info(rectangle)
+from abc import ABC, abstractmethod
+"""ABC module"""
+
+
+class Animal(ABC):
+    """Animal class"""
+    @abstractmethod
+    def sound(self):
+        """Make a sound"""
+        pass
+
+
+class Dog(Animal):
+    """Dog class"""
+    def sound(self):
+        """Make a sound"""
+        return "Bark"
+
+
+class Cat(Animal):
+    """Cat class"""
+    def sound(self):
+        """Make a sound"""
+        return "Meow"
