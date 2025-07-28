@@ -1,28 +1,41 @@
 #!/usr/bin/env python3
-"""Task 00: ABC"""
-
+"""
+Animal Abstract Base Class Implementation
+Defines animal sounds through abstract methods and concrete subclasses.
+"""
 
 from abc import ABC, abstractmethod
-"""ABC module"""
-
 
 class Animal(ABC):
-    """Animal class"""
+    """Abstract base class representing an animal."""
+    
     @abstractmethod
-    def sound(self):
-        """Make a sound"""
+    def make_sound(self) -> str:
+        """Produce the characteristic sound of the animal.
+        
+        Returns:
+            str: The sound the animal makes
+        """
         pass
 
-
-class Dog(Animal):
-    """Dog class"""
-    def sound(self):
-        """Make a sound"""
+class Canine(Animal):
+    """Concrete class representing dogs and related species."""
+    
+    def make_sound(self) -> str:
+        """Generate the barking sound of a dog.
+        
+        Returns:
+            str: The sound "Bark"
+        """
         return "Bark"
 
-
-class Cat(Animal):
-    """Cat class"""
-    def sound(self):
-        """Make a sound"""
+class Feline(Animal):
+    """Concrete class representing cats and related species."""
+    
+    def make_sound(self) -> str:
+        """Generate the meowing sound of a cat.
+        
+        Returns:
+            str: The sound "Meow"
+        """
         return "Meow"
