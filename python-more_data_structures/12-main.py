@@ -1,28 +1,19 @@
-def roman_to_int(s):
-    roman_numerals = {
-        'I': 1,
-        'V': 5,
-        'X': 10,
-        'L': 50,
-        'C': 100,
-        'D': 500,
-        'M': 1000
-    }
-    
-    total = 0
-    prev_value = 0
-    
-    for char in reversed(s):
-        value = roman_numerals[char]
-        if value < prev_value:
-            total -= value
-        else:
-            total += value
-        prev_value = value
-    
-    return total
+#!/usr/bin/python3
+""" Roman to Integer test file
+"""
+roman_to_int = __import__('12-roman_to_int').roman_to_int
 
-# Example usage
-if __name__ == "__main__":
-    roman_string = "XIV"
-    print(f"The integer value of the Roman numeral {roman_string} is {roman_to_int(roman_string)}")
+roman_number = "X"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "VII"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "IX"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "LXXXVII"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))
+
+roman_number = "DCCVII"
+print("{} = {}".format(roman_number, roman_to_int(roman_number)))

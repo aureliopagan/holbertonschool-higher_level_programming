@@ -1,10 +1,7 @@
-def multiply_list_map(my_list, number):
-    return list(map(lambda x: x * number, my_list))
+#!/usr/bin/python3
+multiply_list_map = __import__('11-multiply_list_map').multiply_list_map
 
-
-if __name__ == "__main__":
-    test_list = [1, 2, 3, 4, 5]
-    multiplier = 2
-    result = multiply_list_map(test_list, multiplier)
-    print(f"Original list: {test_list}")
-    print(f"Multiplied by {multiplier}: {result}")
+my_list = [1, 2, 3, 4, 6]
+new_list = multiply_list_map(my_list, 4)
+print(new_list)
+print(my_list)
