@@ -1,8 +1,6 @@
-def number_keys(a_dictionary):
-    """Returns the number of keys in a dictionary."""
-    return len(a_dictionary)
+#!/usr/bin/python3
+number_keys = __import__('5-number_keys').number_keys
 
-# Example usage
-if __name__ == "__main__":
-    sample_dict = {'a': 1, 'b': 2, 'c': 3}
-    print("Number of keys:", number_keys(sample_dict))
+a_dictionary = { 'language': "C", 'number': 13, 'track': "Low level" }
+nb_keys = number_keys(a_dictionary)
+print("Number of keys: {:d}".format(nb_keys))
