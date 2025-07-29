@@ -25,14 +25,14 @@ def main():
     cur = conn.cursor()
     
     # Execute the SQL query to select states starting with 'N' and order by id
-    cur.execute("SELECT * FROM states WHERE BINARY states.name LIKE 'N%' ORDER BY states.id ASC")
+    cur.execute("SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY id ASC")
     
     # Fetch all the rows from the executed query
     query_rows = cur.fetchall()
     
     # Print each row in the specified format
     for row in query_rows:
-        print("({}, '{}')".format(row[0], row[1]))
+        print(row)
     
     # Close the cursor and database connection
     cur.close()
