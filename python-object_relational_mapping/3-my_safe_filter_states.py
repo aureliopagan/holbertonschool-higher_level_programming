@@ -1,13 +1,14 @@
 #!/usr/bin/python3
-"""Filters states by user input and displays matching states from the database hbtn_0e_0_usa."""
+""" Module that filters states by user input """
+
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Retrieve command-line arguments for MySQL username, password, database, and state name
+    # Get command-line arguments
     username, password, database, state_name = sys.argv[1:5]
 
-    # Establish a connection to the MySQL database
+    # Connect to MySQL database
     db = MySQLdb.connect(
         host="localhost",
         port=3306,
@@ -16,22 +17,21 @@ if __name__ == "__main__":
         db=database
     )
 
-    # Create a cursor object to execute SQL queries
+    # Create a cursor object to execute queries
     cur = db.cursor()
 
-    # Construct a parameterized SQL query to find states matching the user input
-    # Using parameterized queries prevents SQL injection
+    # Use parameterized query to prevent SQL injection
     query = "SELECT * FROM states WHERE BINARY name = %s ORDER BY id ASC"
     cur.execute(query, (state_name,))
 
-    # Fetch all the rows from the executed query
+    # Fetch all matching rows
     rows = cur.fetchall()
 
-    # Print each row if there are results
+    # Only print if there are results
     if rows:
         for row in rows:
             print(row)
 
-    # Close the cursor and database connection
+    # Close the cursor and connection
     cur.close()
     db.close()
