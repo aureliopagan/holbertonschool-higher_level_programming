@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Lists all cities of a given state from the database `hbtn_0e_4_usa`."""
+"""Lists all cities of a given state from the database hbtn_0e_4_usa."""
 import MySQLdb
 import sys
 
@@ -39,10 +39,7 @@ if __name__ == "__main__":
 
         # Fetch results and print cities as a comma-separated string
         cities = cur.fetchall()
-        if cities:
-            print(", ".join([city[0] for city in cities]))
-        else:
-            print("")
+        print(", ".join([city[0] for city in cities]))
 
     except MySQLdb.MySQLError as e:
         # Handle database errors
