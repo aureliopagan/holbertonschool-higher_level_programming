@@ -1,24 +1,19 @@
 #!/usr/bin/python3
-"""
-A script that lists all cities of a given state from the database"""
-
+"""Lists all cities of a given state from the database hbtn_0e_4_usa."""
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Ensure there are exactly 4 arguments
+    # Exit if incorrect number of arguments
     if len(sys.argv) != 5:
-        print(
-            "Usage: ./5-filter_cities.py mysql_username"
-            "mysql_password database_name state_name"
-        )
+        print("Usage: ./5-filter_cities.py mysql_username mysql_password database_name state_name")
         sys.exit(1)
 
     # Get command-line arguments
     username, password, database, state_name = sys.argv[1:5]
 
     try:
-        # Connect to the MySQL database
+        # Connect to MySQL database
         db = MySQLdb.connect(
             host="localhost",
             port=3306,
@@ -27,9 +22,10 @@ if __name__ == "__main__":
             db=database
         )
 
-        # Create a cursor object to interact with the database
+        # Create cursor to execute queries
         cur = db.cursor()
 
+        # Query to select cities of the given state, sorted by city ID
         query = """
         SELECT cities.name
         FROM cities
@@ -38,22 +34,19 @@ if __name__ == "__main__":
         ORDER BY cities.id ASC
         """
 
-        # Execute the query with the state name parameter
+        # Execute query with state name parameter
         cur.execute(query, (state_name,))
 
-        # Fetch all results and print cities
+        # Fetch results and print cities as a comma-separated string
         cities = cur.fetchall()
-        if cities:
-            print(", ".join([city[0] for city in cities]))
-        else:
-            print("")
+        print(", ".join([city[0] for city in cities]))
 
     except MySQLdb.MySQLError as e:
-        # Handle any database connection or query errors
+        # Handle database errors
         print(f"Error: {e}")
 
     finally:
-        # Close the cursor and the database connection
+        # Close cursor and database connection
         if db:
             cur.close()
             db.close()
