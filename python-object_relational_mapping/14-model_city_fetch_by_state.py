@@ -1,25 +1,29 @@
 #!/usr/bin/python3
 """
-Removes all State objects with a name containing the letter 'a' from
-the database hbtn_0e_6_usa
+class definition module
 """
-
-import sys
-from model_state import Base, State
-from sqlalchemy import (create_engine)
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, Integer, String, ForeignKey
+from model_state import Base
+from sqlalchemy.orm import relationship
 
 
-if __name__ == "__main__":
-    engine = create_engine(
-        'mysql+mysqldb://{}:{}@localhost:3306/{}?charset=utf8'.format(
-            sys.argv[1], sys.argv[2], sys.argv[3]), pool_pre_ping=True)
-    Base.metadata.create_all(engine)
-
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    for state in session.query(State).order_by(State.id).all():
-        if "a" in state.name:
-            session.delete(state)
-    session.commit()
-    session.close()
+class City(Base):
+    """City class"""
+    __tablename__ = 'cities'
+    id = Column(
+        Integer,
+        unique=True,
+        autoincrement=True,
+        primary_key=True,
+        nullable=False
+        )
+    name = Column(
+        String(128),
+        nullable=False
+    )
+    state_id = Column(
+        Integer,
+        ForeignKey('states.id'),
+        nullable=False
+    )
+    state = relationship("State", backref="cities")
