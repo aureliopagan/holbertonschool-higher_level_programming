@@ -1,19 +1,26 @@
 #!/usr/bin/python3
-"""Lists all cities from the database `hbtn_0e_4_usa` sorted by cities.id."""
+"""
+A script that lists all cities from the database `hbtn_0e_4_usa`
+sorted by cities.id in ascending order.
+"""
+
 import MySQLdb
 import sys
 
 if __name__ == "__main__":
-    # Exit if incorrect number of arguments
+    # Ensure there are exactly 3 arguments
     if len(sys.argv) != 4:
-        print("Usage: ./4-cities_by_state.py mysql_username mysql_password database_name")
+        print(
+            "Usage: ./4-cities_by_state.py "
+            "mysql_username mysql_password database_name"
+        )
         sys.exit(1)
 
     # Get command-line arguments
     username, password, database = sys.argv[1:4]
 
     try:
-        # Connect to MySQL database
+        # Connect to the MySQL database
         db = MySQLdb.connect(
             host="localhost",
             port=3306,
@@ -22,10 +29,10 @@ if __name__ == "__main__":
             db=database
         )
 
-        # Create cursor to execute queries
+        # Create a cursor object to interact with the database
         cur = db.cursor()
 
-        # Query to select cities and their states, sorted by city ID
+        # SQL query to select cities and their respective states
         query = """
         SELECT cities.id, cities.name, states.name
         FROM cities
@@ -33,20 +40,20 @@ if __name__ == "__main__":
         ORDER BY cities.id ASC
         """
 
-        # Execute query and fetch results
+        # Execute the query and fetch all results
         cur.execute(query)
         rows = cur.fetchall()
 
-        # Print each row
+        # Display the results
         for row in rows:
             print(row)
 
     except MySQLdb.MySQLError as e:
-        # Handle database errors
+        # Handle any database connection or query errors
         print(f"Error: {e}")
 
     finally:
-        # Close cursor and database connection
+        # Close the cursor and the database connection
         if db:
             cur.close()
             db.close()
