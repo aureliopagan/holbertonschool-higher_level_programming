@@ -1,0 +1,15 @@
+{
+  "name": "javascript-warm_up",
+  "version": "1.0.0",
+  "description": "🚀 JavaScript Basics 🌍 Background Context JavaScript is a versatile language used for various purposes, including scripting and web front-end development. In this project, we will focus on learning the basic concepts of JavaScript through scripting exercises. Later, we will use JavaScript and jQuery to make our AirBnB project dynamic.",
+  "main": "0-javascript_is_amazing.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "semistandard": "^17.0.0"
+  }
+}
