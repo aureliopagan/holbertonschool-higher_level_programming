@@ -30,4 +30,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-# This code is a simple calculator that performs addition, subtraction,
