@@ -1,5 +1,4 @@
 #!/usr/bin/node
-
 const lines = [
     'C is fun',
     'Python is cool',
@@ -7,4 +6,3 @@ const lines = [
   ];
   
   for (const line of lines) console.log(line);
-  
