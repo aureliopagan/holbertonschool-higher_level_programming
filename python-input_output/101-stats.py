@@ -20,18 +20,18 @@ if __name__ == "__main__":
     try:
         for line in sys.stdin:
             parts = line.strip().split()
-            if len(parts) >= 2:
+            # Process any line that has content
+            if parts:
                 try:
-                    # Extract status code and file size from last two elements
-                    status_code = int(parts[-2])
+                    # Try to get file size from the last element
                     file_size = int(parts[-1])
-                    
-                    # Always update file size
                     total_size += file_size
                     
-                    # Only count valid status codes
-                    if status_code in status_codes:
-                        status_codes[status_code] += 1
+                    # Try to get status code from second-to-last element if it exists
+                    if len(parts) >= 2:
+                        status_code = int(parts[-2])
+                        if status_code in status_codes:
+                            status_codes[status_code] += 1
                     
                     line_count += 1
                     
