@@ -21,8 +21,8 @@ if __name__ == "__main__":
         for line in sys.stdin:
             try:
                 parts = line.strip().split()
-                if len(parts) >= 7:
-                    # Extract status code and file size
+                if len(parts) >= 2:
+                    # Extract status code and file size from last two elements
                     status_code = int(parts[-2])
                     file_size = int(parts[-1])
                     
