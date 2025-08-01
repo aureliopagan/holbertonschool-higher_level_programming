@@ -39,6 +39,10 @@ if __name__ == "__main__":
             except (ValueError, IndexError):
                 # Skip malformed lines
                 continue
+        
+        # Print final stats when input ends (if not already printed)
+        if line_count % 10 != 0:
+            print_stats(total_size, status_codes)
                 
     except KeyboardInterrupt:
         # Print final stats on Ctrl+C
