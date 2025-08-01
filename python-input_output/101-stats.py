@@ -19,15 +19,17 @@ if __name__ == "__main__":
     
     try:
         for line in sys.stdin:
-            try:
-                parts = line.strip().split()
-                if len(parts) >= 2:
+            parts = line.strip().split()
+            if len(parts) >= 2:
+                try:
                     # Extract status code and file size from last two elements
                     status_code = int(parts[-2])
                     file_size = int(parts[-1])
                     
-                    # Update totals
+                    # Always update file size
                     total_size += file_size
+                    
+                    # Only count valid status codes
                     if status_code in status_codes:
                         status_codes[status_code] += 1
                     
@@ -36,9 +38,9 @@ if __name__ == "__main__":
                     # Print stats every 10 lines
                     if line_count % 10 == 0:
                         print_stats(total_size, status_codes)
-            except (ValueError, IndexError):
-                # Skip malformed lines
-                continue
+                except (ValueError, IndexError):
+                    # Skip malformed lines
+                    continue
         
         # Print final stats when input ends
         print_stats(total_size, status_codes)
